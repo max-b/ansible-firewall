@@ -5,11 +5,11 @@ Firewall Ansible role for Debian/Ubuntu
 
 Very simple firewall for Debian/Ubuntu with UFW and fail2ban (optional).
 
-It uses UFW default policies:
+It uses UFW default policies (though you can change them):
 
 - INPUT: DROP
 - OUTPUT: ACCEPT
-- FORWARD : ACCEPT
+- FORWARD : DROP
 
 In this role, you manage "INPUT" chain. FORWARD/OUTPUT will be managed in further versions.
 
@@ -26,6 +26,12 @@ This role uses [ufw module](http://docs.ansible.com/ansible/ufw_module.html). Yo
 
 Role Variables
 --------------
+
+### Default Policies
+
+- `firewall_default_input_policy`: UFW default input policy. Defaults to DROP
+- `firewall_default_output_policy`: UFW default output policy. Defaults to ACCEPT
+- `firewall_default_forward_policy`: UFW default forward policy. Defaults to DROP
 
 ### Common
 
