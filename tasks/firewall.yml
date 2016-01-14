@@ -1,5 +1,21 @@
 ---
 
+- name: iptables | Flush all firewall rules
+  command: iptables -F
+  when: firewall_reset
+
+- name: iptables | Delete all chains
+  command: iptables -X
+  when: firewall_reset
+
+- name: ip6tables | Flush all firewall rules
+  command: ip6tables -F
+  when: firewall_reset and firewall_enable_ipv6 
+
+- name: ip6tables | Delete all chains
+  command: ip6tables -X
+  when: firewall_reset and firewall_enable_ipv6 
+
 - name: SHELL | Get SSHD port
   shell: netstat -nlpt | awk '$NF ~ /sshd$/ && /^tcp / { print $4 }' | cut -d ':' -f 2
   register: sshd_port
